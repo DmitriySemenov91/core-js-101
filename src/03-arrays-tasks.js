@@ -531,6 +531,7 @@ function group(array, keySelector, valueSelector) {
       map.set(keySelector(value), []);
     }
     map.set(keySelector(value), map.get(keySelector(value)).concat(valueSelector(value)));
+    return 0;
   });
   return map;
 }
@@ -567,9 +568,7 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-  let res = arr;
-  indexes.map((index) => { res = res[index]; });
-  return res;
+  return indexes.reduce((accumulator, value) => accumulator[value], arr);
 }
 
 
