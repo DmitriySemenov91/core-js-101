@@ -203,10 +203,10 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  const HEADER = `┌${('─'.repeat(width - 2))}┐\n`;
-  const BODY = height > 2 ? `│${(' '.repeat(width - 2))}│\n`.repeat(height - 2) : '';
-  const FOOTER = `└${('─'.repeat(width - 2))}┘\n`;
-  return HEADER + BODY + FOOTER;
+  const header = `┌${('─'.repeat(width - 2))}┐\n`;
+  const body = height > 2 ? `│${(' '.repeat(width - 2))}│\n`.repeat(height - 2) : '';
+  const footer = `└${('─'.repeat(width - 2))}┘\n`;
+  return header + body + footer;
 }
 
 
@@ -284,9 +284,9 @@ function isString(value) {
 function getCardId(value) {
   const SUITS = ['♣', '♦', '♥', '♠'];
   const RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-  const SUIT = value.slice(-1);
-  const RANK = value.slice(0, -1);
-  return (SUITS.indexOf(SUIT)) * RANKS.length + RANKS.indexOf(RANK);
+  const suit = value.slice(-1);
+  const rank = value.slice(0, -1);
+  return (SUITS.indexOf(suit)) * RANKS.length + RANKS.indexOf(rank);
 }
 
 

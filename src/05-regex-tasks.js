@@ -32,13 +32,13 @@
  * @return {RegExp}
  */
 function getRegexForGuid() {
-  throw new Error('Not implemented');
+  return /^{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}$/i;
 }
 
 
 /**
  * Returns the regexp that matches all the strings from first column
- * but of them from the second
+ * but none of them from the second
  *
  * Match :                 Do not match:
  * -----------             --------------
@@ -54,13 +54,13 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-  throw new Error('Not implemented');
+  return /p.t/;
 }
 
 
 /**
  * Returns the password validator regex.
- * Regex will validate a password to make sure it meets the follwing criteria:
+ * Regex will validate a password to make sure it meets the following criteria:
  *  - At least specified characters long (argument minLength)
  *  - Contains a lowercase letter
  *  - Contains an uppercase letter
@@ -68,7 +68,7 @@ function getRegexForPitSpot() {
  *  - Valid passwords will only be alphanumeric characters.
  *
  * @param {number} minLength
- * @return {Regex}
+ * @return {RegExp}
  *
  * @example
  *   let validator = getPasswordValidator(6);
@@ -78,8 +78,8 @@ function getRegexForPitSpot() {
  *   'PASSW0RD'.match(validator)  => false
  *   'Pa55'.match(validator) => false
  */
-function getPasswordValidator(/* minLength */) {
-  throw new Error('Not implemented');
+function getPasswordValidator(minLength) {
+  return new RegExp(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])([a-zA-Z0-9]{${minLength},})$`);
 }
 
 

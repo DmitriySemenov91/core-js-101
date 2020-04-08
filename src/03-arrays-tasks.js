@@ -452,10 +452,10 @@ function getIdentityMatrix(n) {
   const res = Array(n);
   res.fill(0);
   return res.map((value, index) => {
-    const ROW = Array(n);
-    ROW.fill(0);
-    ROW[index] = 1;
-    return ROW;
+    const row = Array(n);
+    row.fill(0);
+    row[index] = 1;
+    return row;
   });
 }
 
@@ -591,12 +591,12 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  const MID_POS = Math.floor(arr.length / 2);
-  const HEAD = arr.slice(0, MID_POS);
-  const TAIL = arr.slice(-MID_POS);
-  arr.splice(0, MID_POS);
-  arr.splice(-MID_POS);
-  return TAIL.concat(arr).concat(HEAD);
+  const midPos = Math.floor(arr.length / 2);
+  const head = arr.slice(0, midPos);
+  const tail = arr.slice(-midPos);
+  arr.splice(0, midPos);
+  arr.splice(-midPos);
+  return tail.concat(arr).concat(head);
 }
 
 
