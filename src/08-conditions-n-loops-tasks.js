@@ -383,7 +383,9 @@ function getCommonDirectoryPath(paths) {
   let path1 = paths[0];
   for (let pathNo = 1; pathNo < paths.length; pathNo += 1) {
     for (let charIndex = 0; charIndex < path1.length; charIndex += 1) {
-      if (path1[charIndex] !== paths[pathNo][charIndex]) path1 = path1.substring(0, charIndex);
+      if (path1[charIndex] !== paths[pathNo][charIndex]) {
+        path1 = path1.substring(0, charIndex);
+      }
     }
   }
   return path1.substring(0, path1.lastIndexOf('/') + 1);
