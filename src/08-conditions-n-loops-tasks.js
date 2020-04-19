@@ -221,7 +221,9 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-  return str.split('').reverse().join('');
+  return str.split('')
+    .reverse()
+    .join('');
 }
 
 
@@ -238,7 +240,10 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-  return Number(num.toString().split('').reverse().join(''));
+  return Number(num.toString()
+    .split('')
+    .reverse()
+    .join(''));
 }
 
 
@@ -393,7 +398,7 @@ function getCommonDirectoryPath(paths) {
 
 
 /**
- * Returns the product of two specified matrixes.
+ * Returns the product of two specified matrices.
  * See details: https://en.wikipedia.org/wiki/Matrix_multiplication
  *
  * @param {array} m1
@@ -410,8 +415,18 @@ function getCommonDirectoryPath(paths) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const result = new Array(m1.length)
+    .fill(0)
+    .map(() => new Array(m2[0].length)
+      .fill(0));
+  return result.map(
+    (row, rowIndex) => row.map(
+      (val, colIndex) => m1[rowIndex].reduce(
+        (accumulator, element, index) => accumulator + (element * m2[index][colIndex]), 0,
+      ),
+    ),
+  );
 }
 
 
@@ -445,8 +460,27 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  const winningPositions = [];
+  winningPositions.push(position[0]);
+  winningPositions.push(position[1]);
+  winningPositions.push(position[2]);
+  winningPositions.push([position[0][0], position[1][0], position[2][0]]);
+  winningPositions.push([position[0][1], position[1][1], position[2][1]]);
+  winningPositions.push([position[0][2], position[1][2], position[2][2]]);
+  winningPositions.push([position[0][0], position[1][1], position[2][2]]);
+  winningPositions.push([position[0][2], position[1][1], position[2][0]]);
+  let result;
+  let index = 0;
+  while (!result && index < winningPositions.length) {
+    result = (function getWinner(array) {
+      const winner = array[0];
+      return array.length === 3
+      && array.every((element) => element === winner) ? winner : undefined;
+    }(winningPositions[index]));
+    index += 1;
+  }
+  return result;
 }
 
 
